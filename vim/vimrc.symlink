@@ -78,6 +78,9 @@ set visualbell             " shut the fuck up
 " ---------------------------------------------------------------------------
 "  Strip all trailing whitespace in file
 " ---------------------------------------------------------------------------
+if &t_Co > 1
+  syntax enable
+endif
 
 function! StripWhitespace ()
     exec ':%s/ \+$//gc'
