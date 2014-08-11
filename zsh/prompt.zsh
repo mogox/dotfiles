@@ -28,6 +28,11 @@ git_dirty() {
   fi
 }
 
+git_user(){
+  commiter=$($git config user.name)
+  echo " %{$fg_bold[yellow]%}%{$commiter%}%{$reset_color%}"
+}
+
 git_prompt_info () {
  ref=$($git symbolic-ref HEAD 2>/dev/null) || return
 # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
@@ -79,7 +84,7 @@ directory_name(){
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(git_user)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
 }
