@@ -12,6 +12,9 @@ fi
 git_branch() {
   echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
 }
+host() {
+  echo "%{$fg_bold[blue]%}`hostname`%{$reset_color%}"
+}
 
 git_dirty() {
   st=$($git status 2>/dev/null | tail -n 1)
@@ -84,7 +87,7 @@ directory_name(){
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(git_user)$(need_push)\n› '
+export PROMPT=$'\n$(rb_prompt)@$(host) in $(directory_name) $(git_dirty)$(git_user)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
 }
