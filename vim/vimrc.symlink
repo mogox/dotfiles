@@ -60,7 +60,8 @@ set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
-
+set list
+set colorcolumn=80
 
 " ----------------------------------------------------------------------------
 " Visual Cues
@@ -86,3 +87,4 @@ function! StripWhitespace ()
     exec ':%s/ \+$//gc'
 endfunction
 map ,s :call StripWhitespace ()<CR>
+autocmd BufWritePre *.rb %s/\s\+$//e
