@@ -13,7 +13,7 @@ git_branch() {
   echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
 }
 host() {
-  echo "%{$fg_bold[blue]%}`hostname`%{$reset_color%}"
+  echo "%{$fg_bold[blue]%}`hostname -s`%{$reset_color%}"
 }
 
 git_dirty() {
